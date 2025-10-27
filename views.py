@@ -60,7 +60,7 @@ context & other variables. Just try to keep search query as near as possible to 
 Examples:
 Q: what is release date of new iphone? → Latest iPhone release date
 Q: tell me elon musk age → Elon Musk age
-Q: who won last fifa world cup? → FIFA World Cup 2022 winner
+Q: who won last fifa world cup? → FIFA last World Cup winner
 Query:
 """
     response = GC_CLIENT.models.generate_content(
