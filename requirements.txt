@@ -4,3 +4,5 @@ google-genai
 flask
 Flask-RESTful
 dotenv
+flask_sqlalchemy
+psycopg2-binary
