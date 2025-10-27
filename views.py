@@ -6,16 +6,16 @@ from google import genai
 import requests
 from bs4 import BeautifulSoup
 from models import *
-import uuid
 # from database import db
+import uuid
 
 # ------------------------------------------------------------
 
-GOOGLE_GENAI_API_KEY=os.getenv("GOOGLE_GENAI_API_KEY")
-GOOGLE_SEARCH_API_KEY=os.getenv("GOOGLE_SEARCH_API_KEY")
-GOOGLE_SEARCH_ENGINE_ID=os.getenv("GOOGLE_SEARCH_ENGINE_ID")
+GOOGLE_GENAI_API_KEY = os.getenv("GOOGLE_GENAI_API_KEY")
+GOOGLE_SEARCH_API_KEY = os.getenv("GOOGLE_SEARCH_API_KEY")
+GOOGLE_SEARCH_ENGINE_ID = os.getenv("GOOGLE_SEARCH_ENGINE_ID")
 
-GC_CLIENT = genai.Client(api_key=GOOGLE_GENAI_API_KEY)
+GC_CLIENT = genai.Client(api_key = GOOGLE_GENAI_API_KEY)
 GC_MODEL = 'gemini-2.5-flash-lite'
 
 # ------------------------------------------------------------
@@ -28,7 +28,9 @@ def get_token_spending(response):
 # ------------------------------------------------------------
 
 def add_chat_to_db(data_dict):
-    new_chat = ChatHistory(chat_id=data_dict['chat_id'],entity=data_dict['entity'],message=data_dict['message'])
+    new_chat = ChatHistory(chat_id=data_dict['chat_id'],
+                           entity=data_dict['entity'],
+                           message=data_dict['message'])
     db.session.add(new_chat)
     db.session.commit()
     return True
@@ -78,12 +80,14 @@ class Home(Resource):
 class WebSearchResponse(Resource):
     def post(self):
         """
-        Fast search enabled will get results within 5-6 sec depending on internet speed.
+        Fast search enabled will get results within 4-6 sec depending on internet speed.
         With fast search it only takes in the title and top content of web page instead
         of full web-page. but is still accurate upto maybe around 85% +- 5%
 
         And with fast search disable it will get content of all top web pages and then respond,
         it takes approx 15-20 sec also depending on your internet speed.
+
+        Use fast search mostly it will work, but for detailed queries consider disabling it.
         """
         json_data = request.get_json()
 
